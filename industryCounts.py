@@ -105,7 +105,7 @@ def get_companies_by_ids(company_ids):
         response = requests.post(url, headers=HEADERS, json=payload)
         data = response.json()
         for company in data.get("results", []):
-            industry = company["properties"].get("industry", "Unknown")
+            industry = company.get("properties", {}).get("industry") or "Unknown"
             industry_counts[industry] = industry_counts.get(industry, 0) + 1
 
     return industry_counts
