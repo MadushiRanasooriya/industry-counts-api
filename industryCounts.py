@@ -167,7 +167,7 @@ def get_company_sectors(company_ids):
 
         for company in data.get("results", []):
             cid = company.get("id")
-            sector = company.get("properties", {}).get("sector") or "UNKNOWN"  # Changed key
+            sector = company.get("properties", {}).get("sector") or "Unknown"  # Changed key
             sectors[cid] = sector
 
     return sectors
@@ -204,7 +204,7 @@ def sector_counts_for_deal_closed_won():
     sector_counts = {}
     for deal in closed_won_deals:
         company_id = deal["company_id"]
-        sector = company_sectors.get(company_id, "UNKNOWN")
+        sector = company_sectors.get(company_id, "Unknown")
         sector_counts[sector] = sector_counts.get(sector, 0) + 1
 
     return jsonify(sector_counts)
